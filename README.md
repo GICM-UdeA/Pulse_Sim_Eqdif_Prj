@@ -33,7 +33,22 @@ Para la replicación del proyecto alojado en el repositorio se requieren las sig
    ```bash
    git clone https://github.com/GICM-UdeA/Pulse_Sim_Eqdif_Prj.git
    
-2. **Abrir Vivado y Reconstruir el Proyecto**:
+2. **Abrir Vivado y reconstruir el proyecto**:
    
    ![open_vivado](https://raw.githubusercontent.com/GICM-UdeA/Pulse_Sim_Eqdif_Prj/refs/heads/main/readme_assets/open_vivado.png)
-   - Abre Vivado 2022.2. y en la ventana de inicio dirijase a **`Tools > Run Tcl Script...`**
+   
+   Abre Vivado 2022.2. y en la ventana de inicio abre la consola Tcl y ejecuta los siguientes comandos:
+   Dirigete al directorio principal del proyecto:
+   ```bash
+   cd main_directory/hardware_design
+   ```
+   donde `main_directory` hace referencia a la ubicación del repositorio descargado en su equipo. 
+   A continuación vamos a crear un nuevo proyecto mediante el comando a continuación, especificando el nombre del proyecto `project_name` y la referencia del dispositivo FPGA a utilizar en el proyecto `project_device`, Para lo cuál en este caso utilizaremos un FPGA de la familia Virtex-7  (`-part xc7z020clg400-1`) (PYNQ-Z1 o ARTY-Z7).
+   ```bash
+   create_project project_name main_directory/project_name -part project_device
+   ```
+   A continuación importaremos los archivos fuente **.vhd** al nuevo proyecto mediante el siguiente comando
+   ```bash
+   add_files -norecurse {src/eq_dif_model.vhd src/neutrino_signal.vhd src/signal_mux.vhd src/expo_transf_Z.vhd src/serial_tx.vhd src/rng_pulse_trigger.vhd}
+   ```
+   
